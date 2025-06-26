@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="MYi-BK-59w">
-                                <rect key="frame" x="20" y="86" width="374" height="742"/>
+                                <rect key="frame" x="20" y="106" width="374" height="722"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="faZ-wM-dXE">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="23.5"/>
@@ -45,13 +45,13 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг этого фильма меньше, чем 5?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDl-n4-6va" userLabel="Question Label">
-                                        <rect key="frame" x="0.0" y="624.5" width="374" height="37.5"/>
+                                        <rect key="frame" x="0.0" y="624.5" width="374" height="17.5"/>
                                         <fontDescription key="fontDescription" name="YSDisplay-Bold" family="YS Display" pointSize="23"/>
                                         <color key="textColor" name="YP White"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="PoD-Jy-kBG">
-                                        <rect key="frame" x="0.0" y="682" width="374" height="60"/>
+                                        <rect key="frame" x="0.0" y="662" width="374" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mMv-HD-6Wo" userLabel="No Button">
                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="60"/>
@@ -104,16 +104,18 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="YP Black"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="MYi-BK-59w" secondAttribute="top" constant="10" id="Zrg-ko-R8X"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MYi-BK-59w" secondAttribute="trailing" constant="20" id="kYu-FG-UzX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MYi-BK-59w" secondAttribute="bottom" id="ma1-nu-WFr"/>
                             <constraint firstItem="MYi-BK-59w" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="sOr-2D-Rwx"/>
+                            <constraint firstItem="MYi-BK-59w" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="xW9-5X-K4m"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="counterLabel" destination="DaG-nG-Hgt" id="Fnp-Is-I21"/>
                         <outlet property="imageView" destination="Eu3-MA-77e" id="Z2Q-EA-4bK"/>
+                        <outlet property="noButton" destination="mMv-HD-6Wo" id="lri-AJ-wUY"/>
                         <outlet property="textLabel" destination="BDl-n4-6va" id="T3i-be-wR1"/>
+                        <outlet property="yesButton" destination="bhJ-Rt-5fD" id="fD7-J7-viU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
