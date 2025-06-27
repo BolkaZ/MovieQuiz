@@ -74,6 +74,7 @@
         
         private func show(quiz step: QuizStepViewModel) {
             imageView.image = step.image
+            imageView.layer.cornerRadius = 20
             textLabel.text = step.question
             counterLabel.text = step.questionNumber
         }
