@@ -8,6 +8,14 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="YS Display-Bold.ttf">
+            <string>YSDisplay-Bold</string>
+        </array>
+        <array key="YS Display-Medium.ttf">
+            <string>YSDisplay-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Movie Quiz View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -76,7 +84,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="noButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LlW-CB-Qhx"/>
+                                                    <action selector="noButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="700-Su-vaU"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhJ-Rt-5fD" userLabel="Yes Button">
@@ -93,7 +101,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="yesButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hvj-UF-vmo"/>
+                                                    <action selector="yesButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZN2-Bc-tq9"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -111,11 +119,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="counterLabel" destination="DaG-nG-Hgt" id="Fnp-Is-I21"/>
-                        <outlet property="imageView" destination="Eu3-MA-77e" id="Z2Q-EA-4bK"/>
-                        <outlet property="noButton" destination="mMv-HD-6Wo" id="lri-AJ-wUY"/>
-                        <outlet property="textLabel" destination="BDl-n4-6va" id="T3i-be-wR1"/>
-                        <outlet property="yesButton" destination="bhJ-Rt-5fD" id="fD7-J7-viU"/>
+                        <outlet property="counterLabel" destination="DaG-nG-Hgt" id="nKb-J1-h8b"/>
+                        <outlet property="imageView" destination="Eu3-MA-77e" id="RVb-Jd-nGL"/>
+                        <outlet property="noButton" destination="mMv-HD-6Wo" id="XSU-ye-hXw"/>
+                        <outlet property="textLabel" destination="BDl-n4-6va" id="B1Y-gK-5QR"/>
+                        <outlet property="yesButton" destination="bhJ-Rt-5fD" id="Sop-3s-ozr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
