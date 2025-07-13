@@ -1,12 +1,14 @@
 import UIKit
 
-final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
+final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, AlertPresenterProtocol {
     
     private let questionsAmount: Int = 10
     private var questionFactory: QuestionFactoryProtocol?
+    private var statisticService: StatisticServiceProtocol = StatisticServiceImplementation()
     private var currentQuestion: QuizQuestion?
     private var currentQuestionIndex: Int = 0
     private var correctAnswers: Int = 0
+    private lazy var alertPresenter = AlertPresenter(viewController: self)
     
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var counterLabel: UILabel!
@@ -36,7 +38,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         questionFactory = QuestionFactory(delegate: self)
         questionFactory?.requestNextQuestion()
     }
@@ -54,6 +55,12 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         DispatchQueue.main.async { [weak self] in
             self?.show(quiz: viewModel)
         }
+    }
+    
+    //MARK: - AlertPresenterProtocol
+    
+    func present(alert: UIAlertController, animated: Bool) {
+        self.present(alert, animated: animated)
     }
     
     // MARK: - Private functions
@@ -96,7 +103,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         
         if currentQuestionIndex == questionsAmount - 1 {
             show(quiz: QuizResultsViewModel(
-                title: "Раунд окончен!",
+                title: "Этот раунд окончен!",
                 text: "Ваш результат: \(correctAnswers)/\(questionsAmount)",
                 buttonText: "Сыграть еще раз"))
         } else {
@@ -106,21 +113,26 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     }
     
     private func show(quiz result: QuizResultsViewModel) {
-        let alertModel = AlertModel(
-            title: result.title,
-            message: result.text,
-            buttonText: result.buttonText,
-            completion: { [weak self] in
+            statisticService.store(correct: correctAnswers, total: questionsAmount)
+            
+            let currentResult = "Ваш результат: \(correctAnswers)/\(questionsAmount)\n"
+            let bestGame = statisticService.bestGame
+            let bestGameInfo = "Рекорд: \(bestGame.correct)/\(bestGame.total) (\(bestGame.date.dateTimeString))\n"
+            let totalAccuracy = "Средняя точность: \(String(format: "%.2f", statisticService.totalAccuracy))%\n"
+            let gamesCount = "Количество сыгранных квизов: \(statisticService.gamesCount)\n"
+            
+            let alertModel = AlertModel(
+                title: result.title,
+                message: currentResult + gamesCount + bestGameInfo + totalAccuracy,
+                buttonText: result.buttonText,
+                completion: { [weak self] in
                 guard let self = self else { return }
                 
-                // Вместо вызова restartGame() — делаем всё здесь
                 self.currentQuestionIndex = 0
                 self.correctAnswers = 0
                 self.questionFactory?.requestNextQuestion()
             }
         )
-
-        let alertPresenter = AlertPresenter(viewController: self)
-        alertPresenter.present(alert: alertModel)
-    }
+            alertPresenter.present(alert: alertModel)
+        }
 }

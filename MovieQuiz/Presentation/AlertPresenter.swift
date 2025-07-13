@@ -2,9 +2,9 @@ import Foundation
 import UIKit
 
 final class AlertPresenter {
-    private weak var viewController: UIViewController?
-
-    init(viewController: UIViewController) {
+    private weak var viewController: AlertPresenterProtocol?
+    
+    init(viewController: AlertPresenterProtocol?) {
         self.viewController = viewController
     }
 
@@ -16,11 +16,11 @@ final class AlertPresenter {
         )
 
         let action = UIAlertAction(title: alert.buttonText, style: .default) { _ in
-            alert.completion()
+            alert.completion?()
         }
 
         alertController.addAction(action)
 
-        viewController?.present(alertController, animated: true, completion: nil)
+        viewController?.present(alert: alertController, animated: true)
     }
 }
