@@ -34,6 +34,8 @@ class QuestionFactory: QuestionFactoryProtocol {
                      correctAnswer: false)
     ]
     
+    private var usedIndex: Set<Int> = []
+    
     weak var delegate: QuestionFactoryDelegate?
     
     init(delegate: QuestionFactoryDelegate) {
@@ -41,12 +43,24 @@ class QuestionFactory: QuestionFactoryProtocol {
     }
     
     func requestNextQuestion() {
-        guard let index = (0..<questions.count).randomElement() else {
+        if usedIndex.count == questions.count {
             delegate?.didReceiveNextQuestion(question: nil)
             return
         }
-        let question = questions[safe: index]
+        
+        var randomIndex: Int
+        repeat {
+            randomIndex = Int.random(in: 0..<questions.count)
+        } while usedIndex.contains(randomIndex)
+        
+        usedIndex.insert(randomIndex)
+        
+        let question = questions[randomIndex]
         delegate?.didReceiveNextQuestion(question: question)
+    }
+    
+    func reset() {
+        usedIndex.removeAll()
     }
 }
 
