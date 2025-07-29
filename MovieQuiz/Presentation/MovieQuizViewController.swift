@@ -20,7 +20,7 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupViews()
         presenter = MovieQuizPresenter(viewController: self)
     }
     
@@ -54,6 +54,11 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         }
         
         alertPresenter.show(alert: model)
+    }
+    
+    func setupViews() {
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 20
     }
     
     func show(quiz step: QuizStepViewModel) {
